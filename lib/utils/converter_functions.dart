@@ -15,6 +15,18 @@ IconData precipitationProbablityToIconData(
   }
 }
 
+String celsiusToFahrenheit(String tempC) {
+  final tempF = (double.parse(tempC) * 9 / 5) + 32;
+  final tempFStr = tempF.round().toString();
+  return tempFStr;
+}
+
+String kmToMile(String kmh) {
+  final speed = double.parse(kmh) * 0.621371;
+  final mph = speed.toStringAsFixed(2);
+  return mph;
+}
+
 String weatherCodeToPath(
   int weatherCode,
   bool? isDay,

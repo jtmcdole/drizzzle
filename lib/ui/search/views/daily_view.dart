@@ -1,8 +1,10 @@
 import 'package:drizzzle/domain/models/daily_model.dart';
+import 'package:drizzzle/ui/home/view_models/unit_view_model.dart';
 import 'package:drizzzle/ui/search/shared_widgets/custom_card.dart';
 import 'package:drizzzle/utils/converter_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../shared_widgets/shared_title.dart';
 
@@ -129,6 +131,9 @@ class _DailyInformation extends StatelessWidget {
         dailyPrecipitationProbablityPadded = " $dailyPrecipitationProbablity%";
       }
     }
+
+    final UnitViewModel unitViewModel = Provider.of<UnitViewModel>(context);
+    final isC = unitViewModel.isC ? 'C' : 'F';
     return Card.filled(
       color: index != 1
           ? colorScheme.surfaceContainerHighest
@@ -174,7 +179,7 @@ class _DailyInformation extends StatelessWidget {
             ),
             const SizedBox(width: 12),
             Text(
-              '$dailyTemperatureMax\u00b0',
+              '${isC == 'F' ? celsiusToFahrenheit(dailyTemperatureMax) : dailyTemperatureMax}\u00b0',
               style: textTheme.bodyLarge!.copyWith(
                   color: index != 1
                       ? colorScheme.secondary
@@ -183,7 +188,7 @@ class _DailyInformation extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             Text(
-              '$dailyTemperatureMin\u00b0',
+              '${isC == 'F' ? celsiusToFahrenheit(dailyTemperatureMin) : dailyTemperatureMin}\u00b0',
               style: textTheme.bodyLarge!.copyWith(
                   color: index != 1
                       ? colorScheme.onSurfaceVariant.withAlpha(125)

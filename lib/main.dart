@@ -16,7 +16,7 @@ Future<void> main() async {
 
   runApp(
     MultiProvider(
-      providers: providers(dbClient,pref),
+      providers: providers(dbClient, pref),
       child: const App(),
     ),
   );

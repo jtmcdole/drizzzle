@@ -31,9 +31,8 @@ class WeatherRepository {
         locationModel.longitude, locationModel.timezone);
     final dailyResult = await _apiClient.getDailyData(locationModel.latitude,
         locationModel.longitude, locationModel.timezone);
-    final aqResult = await _apiClient.getAirQualityData(
-        locationModel.latitude, locationModel.longitude,
-        timezone: locationModel.timezone);
+    final aqResult = await _apiClient.getAirQualityData(locationModel.latitude,
+        locationModel.longitude, locationModel.timezone);
     if (currentResult is Error<Current> ||
         hourlyResult is Error<Hourly> ||
         dailyResult is Error<Daily> ||

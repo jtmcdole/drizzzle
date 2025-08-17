@@ -81,7 +81,10 @@ class ApiClient {
 
   // get daily weather data
   Future<Result<Daily>> getDailyData(
-      double latitude, double longitude, String timezone) async {
+    double latitude,
+    double longitude,
+    String timezone,
+  ) async {
     final Uri httpUri = Uri(
         scheme: ResourceString.scheme,
         host: ResourceString.weatherHost,
@@ -102,10 +105,7 @@ class ApiClient {
 
   // get air quality data
   Future<Result<AirQuality>> getAirQualityData(
-    double latitude,
-    double longitude, {
-    String timezone = 'auto',
-  }) async {
+      double latitude, double longitude, String timezone) async {
     final Uri httpUri = Uri(
         scheme: ResourceString.scheme,
         host: ResourceString.airQualityHost,

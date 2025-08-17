@@ -25,7 +25,7 @@ class ResourceString {
   static const timezoneQuery = 'timezone';
   static const forecastQuery = 'forecast_days';
   static const pastdaysQuery = 'past_days';
-
+  
   // current hourly parameter value
   static const currentQueryValue =
       'temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,precipitation';
@@ -147,4 +147,6 @@ create table ${HourlyTable.tableName}(
 class SharedPreferencesKeys {
   static String colorKey = "color";
   static String brightnessKey = "brightness";
+  static String temperatureUnitKey = "temperature";
+  static String windSpeedUnitKey = "wind_speed";
 }

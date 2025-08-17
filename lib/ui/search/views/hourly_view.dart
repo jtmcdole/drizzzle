@@ -1,8 +1,10 @@
 import 'package:drizzzle/domain/models/hourly_model.dart';
+import 'package:drizzzle/ui/home/view_models/unit_view_model.dart';
 import 'package:drizzzle/ui/search/shared_widgets/custom_card.dart';
 import 'package:drizzzle/ui/search/shared_widgets/shared_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../utils/converter_functions.dart';
 
@@ -108,11 +110,15 @@ class _HourlyInformation extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
+    final UnitViewModel unitViewModel = Provider.of<UnitViewModel>(context);
+    final isC = unitViewModel.isC ? 'C' : 'F';
+
     final String hourlyPrecipitationProbablityPadded =
         "$hourlyPrecipitationProbablity%".padRight(3, ' ');
     final String timeHourPadded = "${time.hour} $amOrPm".padRight(5, ' ');
     final String hourlyTemperaturePadded =
-        "$hourlyTemperature\u00b0".padRight(2, ' ');
+        "${isC == 'F' ? celsiusToFahrenheit(hourlyTemperature) : hourlyTemperature}\u00b0"
+            .padRight(2, ' ');
 
     return CustomCard(
       color: colorScheme.surfaceContainerHighest,

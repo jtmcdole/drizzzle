@@ -82,14 +82,6 @@ class _SearchViewState extends State<SearchView> {
     );
   }
 
-  List<Widget> get _running {
-    final height = MediaQuery.of(context).size.height;
-    return [
-      SizedBox(height: height / 4 + height / 64),
-      const Center(child: CircularProgressIndicator()),
-    ];
-  }
-
   List<Widget> _success(List<LocationModel> data) {
     if (data.isEmpty) {
       return const [

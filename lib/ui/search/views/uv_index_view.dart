@@ -9,7 +9,6 @@ class UvIndexView extends StatelessWidget {
   Widget build(BuildContext context) {
     const String title = 'UV index';
     const IconData iconData = Icons.flare_outlined;
-    final textTheme = Theme.of(context).textTheme;
     final String uvIndexDescription =
         uvIndexToDescription(int.parse(aqUvIndex));
     final child = Column(
@@ -18,14 +17,18 @@ class UvIndexView extends StatelessWidget {
       children: [
         Text(
           aqUvIndex,
-          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-              color: Theme.of(context).colorScheme.secondaryFixedDim),
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall!
+              .copyWith(color: Theme.of(context).colorScheme.secondaryFixedDim),
         ),
         const SizedBox(height: 2),
         Text(
           uvIndexDescription,
-          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-              color: Theme.of(context).colorScheme.secondaryFixedDim),
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall!
+              .copyWith(color: Theme.of(context).colorScheme.secondaryFixedDim),
         ),
       ],
     );
