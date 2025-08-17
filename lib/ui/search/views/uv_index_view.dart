@@ -18,16 +18,14 @@ class UvIndexView extends StatelessWidget {
       children: [
         Text(
           aqUvIndex,
-          style: textTheme.headlineSmall!.copyWith(
-              color: Theme.of(context).colorScheme.secondaryFixedDim,
-              fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              color: Theme.of(context).colorScheme.secondaryFixedDim),
         ),
         const SizedBox(height: 2),
         Text(
           uvIndexDescription,
-          style: textTheme.headlineSmall!.copyWith(
-              color: Theme.of(context).colorScheme.secondaryFixedDim,
-              fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              color: Theme.of(context).colorScheme.secondaryFixedDim),
         ),
       ],
     );

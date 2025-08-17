@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:drizzzle/ui/search/shared_widgets/shared_small_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -18,7 +20,7 @@ class WindSpeedView extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Transform.rotate(
-          angle: windDirection_10m.toDouble(),
+          angle: windDirection_10m * math.pi / 180,
           child: Icon(
             Icons.arrow_forward_rounded,
             color: Theme.of(context).colorScheme.secondaryFixedDim,
@@ -28,8 +30,7 @@ class WindSpeedView extends StatelessWidget {
         Text(
           '$windSpeed_10m km/h',
           style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-              color: Theme.of(context).colorScheme.secondaryFixedDim,
-              fontWeight: FontWeight.bold),
+              color: Theme.of(context).colorScheme.secondaryFixedDim),
         )
       ],
     );

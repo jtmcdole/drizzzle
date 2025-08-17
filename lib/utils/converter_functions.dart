@@ -80,9 +80,9 @@ String weatherCodeToPath(
       return ResourceAssets.weatherIconShowerNight;
     case (95, null):
       return ResourceAssets.weatherIconThunderStormRainDefault;
-    case (95, false):
-      return ResourceAssets.weatherIconThunderStormRainDay;
     case (95, true):
+      return ResourceAssets.weatherIconThunderStormRainDay;
+    case (95, false):
       return ResourceAssets.weatherIconThunderStormRainNight;
     case (96 || 99, null):
       return ResourceAssets.weatherIconHailDefault;
@@ -160,15 +160,12 @@ String iso8601ToWeekday(String iso8601Time) {
   bool includeMinute = false,
 ]) {
   DateTime parsedDateTime = DateTime.parse(iso8601Time);
-  int hour = parsedDateTime.hour;
+  int originalHour = parsedDateTime.hour; // 0 - 23
+  bool beforeMidday = originalHour < 12; // true for AM
+  int hour12 = originalHour % 12;
+  if (hour12 == 0) hour12 = 12;
   int? minute = includeMinute ? parsedDateTime.minute : null;
-  bool beforeMidday = hour < 12;
-  if (hour == 0) {
-    hour = 12;
-  } else if (hour > 12) {
-    hour -= 12;
-  }
-  return (hour: hour, minute: minute, beforeMidday: beforeMidday);
+  return (hour: hour12, minute: minute, beforeMidday: beforeMidday);
 }
 
 String uvIndexToDescription(int uvIndex) {

@@ -1,6 +1,5 @@
 import 'package:diacritic/diacritic.dart';
 import 'package:drizzzle/domain/models/location_model.dart';
-import 'package:drizzzle/ui/search/shared_widgets/shared_message.dart';
 import 'package:drizzzle/ui/search/view_models/location_view_model.dart';
 import 'package:drizzzle/ui/search/view_models/weather_view_model.dart';
 import 'package:drizzzle/utils/custom_system_navbar.dart';
@@ -21,6 +20,9 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     final locationViewModel = context.watch<LocationViewModel>();
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
     return CustomSystemNavBar(
       child: SearchAnchor.bar(
         barHintText: 'Search Location',
@@ -41,21 +43,38 @@ class _SearchViewState extends State<SearchView> {
               .read<LocationViewModel>()
               .loadLocation(name: searchController.text);
           if (locationViewModel.locationList == null) {
-            return sharedMessage(
-                context, Symbols.travel_explore_rounded, 'Search');
+            // return sharedMessage(
+            //         context, Symbols.travel_explore_rounded, 'Search')
+            //     .children;
+            return List.empty();
           } else if (!locationViewModel.loading) {
-            return _running;
+            //return _running;
+            return List.empty();
           } else {
             final result = locationViewModel.locationList;
             switch (result) {
               case null:
-                return sharedMessage(context, Symbols.travel_explore, 'Search');
+                // return sharedMessage(context, Symbols.search, 'Search')
+                //     .children;
+                return List.empty();
               case Ok<List<LocationModel>>():
                 final val = result.value;
                 return _success(val);
               case Error<List<LocationModel>>():
-                return sharedMessage(context, Symbols.wrong_location_rounded,
-                    'No Location found!');
+                return [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text(
+                      'No location found!',
+                      style: textTheme.headlineSmall!.copyWith(
+                        color: colorScheme.onSurfaceVariant.withAlpha(125),
+                      ),
+                    ),
+                  )
+                ];
+              // return sharedMessage(context, Symbols.wrong_location_rounded,
+              //         'No Location found!')
+              //     .children;
             }
           }
         },

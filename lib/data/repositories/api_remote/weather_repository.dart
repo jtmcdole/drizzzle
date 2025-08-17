@@ -21,16 +21,16 @@ class WeatherRepository {
   final ApiClient _apiClient;
   final DbClient _dbClient;
 
-  Future<Result<Weather>> fetchAndSaveWeather(LocationModel locationModel) async {
+  Future<Result<Weather>> fetchAndSaveWeather(
+      LocationModel locationModel) async {
     final currentResult = await _apiClient.getCurrentData(
-        locationModel.latitude, locationModel.longitude,
-        timezone: locationModel.timezone);
-    final hourlyResult = await _apiClient.getHourlyData(
-        locationModel.latitude, locationModel.longitude,
-        timezone: locationModel.timezone);
-    final dailyResult = await _apiClient.getDailyData(
-        locationModel.latitude, locationModel.longitude,
-        timezone: locationModel.timezone);
+        locationModel.latitude,
+        locationModel.longitude,
+        locationModel.timezone);
+    final hourlyResult = await _apiClient.getHourlyData(locationModel.latitude,
+        locationModel.longitude, locationModel.timezone);
+    final dailyResult = await _apiClient.getDailyData(locationModel.latitude,
+        locationModel.longitude, locationModel.timezone);
     final aqResult = await _apiClient.getAirQualityData(
         locationModel.latitude, locationModel.longitude,
         timezone: locationModel.timezone);
@@ -43,6 +43,7 @@ class WeatherRepository {
       final List<HourlyModel> hourlyModelList = [];
       final hourly = (hourlyResult as Ok<Hourly>).value.hourly;
       int size = hourly.time.length;
+
       for (int i = 0; i < size; i += 1) {
         final hourlyModel = HourlyModel(
           hourlyTime: hourly.time.elementAt(i),
@@ -53,8 +54,10 @@ class WeatherRepository {
           hourlyApparentTemperature:
               hourly.apparentTemperature.elementAt(i).round().toString(),
           hourlyWeatherIconPath: weatherCodeToPath(
-              hourly.weatherCode.elementAt(i),
-              hourly.isDay.elementAt(i) == 1 ? true : false),
+            hourly.weatherCode.elementAt(i),
+            hourly.isDay.elementAt(i) == 1 ? true : false,
+            //hourly.isDay.elementAt(i) == 1 ? true : false
+          ),
           hourlyPrecipitationProbablity:
               hourly.precipitationProbability.elementAt(i).toString(),
           hourlyWindSpeed: hourly.windSpeed_10m.elementAt(i).toString(),
@@ -93,7 +96,9 @@ class WeatherRepository {
         currentApparentTemperature:
             current.apparentTemperature.round().toString(),
         currentWeatherIconPath: weatherCodeToPath(
-            current.weatherCode, current.isDay == 1 ? true : false),
+          current.weatherCode,
+          current.isDay == 1 ? true : false,
+        ),
         currentPrecipitation: current.precipitation.toString(),
         currentWeatherIconDescription:
             weatherCodeToDescription(current.weatherCode),
@@ -120,7 +125,7 @@ class WeatherRepository {
     }
   }
 
-  Future<Result<Weather>> getWeather() async{
+  Future<Result<Weather>> getWeather() async {
     final weather = await _dbClient.getWeather();
     return weather;
   }

@@ -61,16 +61,17 @@ class _HourlyViewState extends State<HourlyView> {
       itemBuilder: (context, index) {
         final hourlyModelListItem = widget.hourlyModelList[index];
         return _HourlyInformation(
-            hourlyTime: hourlyModelListItem.hourlyTime,
-            hourlyTemperature: hourlyModelListItem.hourlyTemperature,
-            hourlyRelativeHumidity: hourlyModelListItem.hourlyRelativeHumidity,
-            hourlyApparentTemperature:
-                hourlyModelListItem.hourlyApparentTemperature,
-            hourlyWeatherIconPath: hourlyModelListItem.hourlyWeatherIconPath,
-            hourlyPrecipitationProbablity:
-                hourlyModelListItem.hourlyPrecipitationProbablity,
-            hourlyWindSpeed: hourlyModelListItem.hourlyWindSpeed,
-            hourlyWindDirection: hourlyModelListItem.hourlyWindDirection);
+          hourlyTime: hourlyModelListItem.hourlyTime,
+          hourlyTemperature: hourlyModelListItem.hourlyTemperature,
+          hourlyRelativeHumidity: hourlyModelListItem.hourlyRelativeHumidity,
+          hourlyApparentTemperature:
+              hourlyModelListItem.hourlyApparentTemperature,
+          hourlyWeatherIconPath: hourlyModelListItem.hourlyWeatherIconPath,
+          hourlyPrecipitationProbablity:
+              hourlyModelListItem.hourlyPrecipitationProbablity,
+          hourlyWindSpeed: hourlyModelListItem.hourlyWindSpeed,
+          hourlyWindDirection: hourlyModelListItem.hourlyWindDirection,
+        );
       },
       separatorBuilder: (context, index) => const SizedBox(
         width: 8,
@@ -80,15 +81,16 @@ class _HourlyViewState extends State<HourlyView> {
 }
 
 class _HourlyInformation extends StatelessWidget {
-  const _HourlyInformation(
-      {required this.hourlyTime,
-      required this.hourlyTemperature,
-      required this.hourlyRelativeHumidity,
-      required this.hourlyApparentTemperature,
-      required this.hourlyWeatherIconPath,
-      required this.hourlyPrecipitationProbablity,
-      required this.hourlyWindSpeed,
-      required this.hourlyWindDirection});
+  const _HourlyInformation({
+    required this.hourlyTime,
+    required this.hourlyTemperature,
+    required this.hourlyRelativeHumidity,
+    required this.hourlyApparentTemperature,
+    required this.hourlyWeatherIconPath,
+    required this.hourlyPrecipitationProbablity,
+    required this.hourlyWindSpeed,
+    required this.hourlyWindDirection,
+  });
   final String hourlyTime;
   final String hourlyTemperature;
   final String hourlyRelativeHumidity;
@@ -154,7 +156,9 @@ class _HourlyInformation extends StatelessWidget {
               const SizedBox(width: 4),
               Text(
                 hourlyPrecipitationProbablityPadded,
-                style: TextStyle(color: colorScheme.onSurfaceVariant),
+                style: TextStyle(
+                  color: colorScheme.onSurfaceVariant,
+                ),
               ),
             ],
           )
