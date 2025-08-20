@@ -64,10 +64,12 @@ class _SearchViewState extends State<SearchView> {
                 return [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Text(
-                      'No location found!',
-                      style: textTheme.headlineSmall!.copyWith(
-                        color: colorScheme.onSurfaceVariant.withAlpha(125),
+                    child: Center(
+                      child: Text(
+                        'No location found!',
+                        style: textTheme.bodyLarge!.copyWith(
+                          color: colorScheme.onSurfaceVariant.withAlpha(125),
+                        ),
                       ),
                     ),
                   )
@@ -97,17 +99,32 @@ class _SearchViewState extends State<SearchView> {
     }
     return data.map((location) {
       return ListTile(
-          title: Text(removeDiacritics(location.name)),
+          title: Text(
+            removeDiacritics(location.name),
+            softWrap: true,
+          ),
           subtitle: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               if (location.admin1 != null && location.admin1!.isNotEmpty) ...[
-                Text(removeDiacritics(location.admin1!)),
+                Flexible(
+                  child: Text(
+                    removeDiacritics(location.admin1!),
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
                 const Text(','),
                 const SizedBox(width: 8),
               ],
               if (location.country != null && location.country!.isNotEmpty) ...[
-                Text(removeDiacritics(location.country!))
+                Flexible(
+                  child: Text(
+                    removeDiacritics(location.country!),
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                )
               ],
             ],
           ),

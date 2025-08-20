@@ -43,7 +43,13 @@ class _HomeViewState extends State<HomeView> {
         case Ok<Weather>():
           final val = result.value;
           final weatherBody = _weatherBody(val);
-          homeWidget = HomeSuccessView(widgetList: weatherBody);
+          homeWidget = HomeSuccessView(
+            widgetList: weatherBody,
+            currentTemperature: val.currentTemperature,
+            locationName: val.locationName,
+            currentWeatherDescription: val.currentWeatherIconDescription,
+            currentWeatherIconPath: val.currentWeatherIconPath,
+          );
         case Error<Weather>():
           homeWidget = const HomeErrorView();
       }

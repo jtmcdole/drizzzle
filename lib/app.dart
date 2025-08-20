@@ -19,7 +19,7 @@ class _AppState extends State<App> {
 
     final WeatherViewModel weatherViewModel = context.read<WeatherViewModel>();
     Future.microtask(() async {
-      await weatherViewModel.getWeather();
+      await weatherViewModel.getLocalWeather();
     });
   }
 

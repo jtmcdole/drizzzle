@@ -23,8 +23,8 @@ class LocationRepository {
               latitude: l.latitude,
               longitude: l.longitude,
               timezone: l.timezone,
-              admin1: l.admin1.isEmpty ? null : l.admin1,
-              country: l.country.isEmpty ? null : l.country,
+              admin1: l.admin1,
+              country: l.country,
             );
           }).toList();
           return Result.ok(locationList);

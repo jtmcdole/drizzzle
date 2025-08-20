@@ -13,7 +13,7 @@ _$LocationInternalImpl _$$LocationInternalImplFromJson(
       name: json['name'] as String,
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),
-      timezone: json['timezone'] as String,
-      country: json['country'] as String? ?? '',
-      admin1: json['admin1'] as String? ?? '',
+      timezone: json['timezone'] as String?,
+      country: json['country'] as String?,
+      admin1: json['admin1'] as String?,
     );

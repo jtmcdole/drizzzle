@@ -63,11 +63,16 @@ class _CurrentViewState extends State<CurrentView> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          widget.locationName,
-          style: textTheme.displaySmall!.copyWith(color: colorScheme.primary),
-          textAlign: TextAlign.start,
-          softWrap: true,
+        ConstrainedBox(
+          constraints:
+              BoxConstraints(maxWidth: MediaQuery.of(context).size.width - 192),
+          child: Text(
+            widget.locationName,
+            style: textTheme.displaySmall!.copyWith(color: colorScheme.primary),
+            textAlign: TextAlign.start,
+            softWrap: true,
+            //overflow: TextOverflow.ellipsis,
+          ),
         ),
         Text(
           '${isC == 'F' ? celsiusToFahrenheit(widget.currentTemperature) : widget.currentTemperature}\u00b0$isC',

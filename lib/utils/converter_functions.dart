@@ -196,3 +196,42 @@ String uvIndexToDescription(int uvIndex) {
       return 'Healthy';
   }
 }
+
+int pathToImageid(String path){
+  switch(path){
+    case ResourceAssets.weatherIconClearDefault: return 0;
+    case ResourceAssets.weatherIconClearNight: return 1;
+    case ResourceAssets.weatherIconClearDay: return 2;
+    case ResourceAssets.weatherIconFogDefault: return 3;
+    case ResourceAssets.weatherIconFogNight: return 4;
+    case ResourceAssets.weatherIconFogDay: return 5;
+    case ResourceAssets.weatherIconHailDefault: return 6;
+    case ResourceAssets.weatherIconHailNight: return 7;
+    case ResourceAssets.weatherIconHailDay: return 8;
+    case ResourceAssets.weatherIconLightSnowDefault: return 9;
+    case ResourceAssets.weatherIconLightSnowNight: return 10;
+    case ResourceAssets.weatherIconLightSnowDay: return 11;
+    case ResourceAssets.weatherIconMediumCloudyDefault: return 12;
+    case ResourceAssets.weatherIconMediumCloudyNight: return 13;
+    case ResourceAssets.weatherIconMediumCloudyDay: return 14;
+    case ResourceAssets.weatherIconPartlyCloudyDefault: return 15;
+    case ResourceAssets.weatherIconPartlyCloudyNight: return 16;
+    case ResourceAssets.weatherIconPartlyCloudyDay: return 17;
+    case ResourceAssets.weatherIconRainDefault: return 18;
+    case ResourceAssets.weatherIconRainNight: return 19;
+    case ResourceAssets.weatherIconRainDay: return 20;
+    case ResourceAssets.weatherIconShowerDefault: return 21;
+    case ResourceAssets.weatherIconShowerNight: return 22;
+    case ResourceAssets.weatherIconShowerDay: return 23;
+    case ResourceAssets.weatherIconSnowDefault: return 24;
+    case ResourceAssets.weatherIconSnowNight: return 25;
+    case ResourceAssets.weatherIconSnowDay: return 26;
+    case ResourceAssets.weatherIconThunderShowerRainDefault: return 27;
+    case ResourceAssets.weatherIconThunderShowerRainNight: return 28;
+    case ResourceAssets.weatherIconThunderShowerRainDay: return 29;
+    case ResourceAssets.weatherIconThunderStormRainDefault: return 30;
+    case ResourceAssets.weatherIconThunderStormRainNight: return 31;
+    case ResourceAssets.weatherIconThunderStormRainDay: return 32;
+    default: return 100;
+  }
+}

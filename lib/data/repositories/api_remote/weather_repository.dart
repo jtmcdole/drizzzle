@@ -1,3 +1,4 @@
+
 import 'package:diacritic/diacritic.dart';
 import 'package:drizzzle/data/services/api_remote/api_client.dart';
 import 'package:drizzzle/data/services/api_remote/model/air_quality/air_quality.dart';
@@ -118,13 +119,13 @@ class WeatherRepository {
         aqPm2_5: airQuality.pm2_5.toString(),
         aqPm10: airQuality.pm10.toString(),
       );
+
       await _dbClient.insert(weather);
-      final data = await _dbClient.getWeather();
-      return data;
+      return getLocalWeather();
     }
   }
 
-  Future<Result<Weather>> getWeather() async {
+  Future<Result<Weather>> getLocalWeather() async {
     final weather = await _dbClient.getWeather();
     return weather;
   }

@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:ui';
+
 import 'package:drizzzle/domain/models/hourly_model.dart';
 import 'package:drizzzle/ui/home/view_models/unit_view_model.dart';
 import 'package:drizzzle/ui/search/shared_widgets/custom_card.dart';
@@ -56,7 +59,7 @@ class _HourlyViewState extends State<HourlyView> {
 
   //hourly list
   Widget _hourly() {
-    return ListView.separated(
+    final listView = ListView.separated(
       scrollDirection: Axis.horizontal,
       shrinkWrap: true,
       itemCount: widget.hourlyModelList.length,
@@ -79,6 +82,15 @@ class _HourlyViewState extends State<HourlyView> {
         width: 8,
       ),
     );
+    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+      return ScrollConfiguration(
+          behavior: const ScrollBehavior().copyWith(
+              scrollbars: true,
+              dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch}),
+          child: listView);
+    } else {
+      return listView;
+    }
   }
 }
 

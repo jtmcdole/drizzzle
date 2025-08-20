@@ -15,21 +15,23 @@ class WeatherViewModel extends ChangeNotifier {
   Result<Weather>? _weather;
   Result<Weather>? get weather => _weather;
 
-  Future<void> fetchAndSaveWeather({required LocationModel locationModel}) async{
+  Future<void> fetchAndSaveWeather(
+      {required LocationModel locationModel}) async {
     _loading = true;
     notifyListeners();
 
     _weather = await _weatherRepository.fetchAndSaveWeather(locationModel);
-    
+
     _loading = false;
     notifyListeners();
   }
-  Future<void> getWeather() async {
+
+  Future<void> getLocalWeather() async {
     _loading = true;
     notifyListeners();
 
-    _weather = await _weatherRepository.getWeather();
-    
+    _weather = await _weatherRepository.getLocalWeather();
+
     _loading = false;
     notifyListeners();
   }

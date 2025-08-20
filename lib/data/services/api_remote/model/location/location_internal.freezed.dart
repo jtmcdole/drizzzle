@@ -24,11 +24,9 @@ mixin _$LocationInternal {
   String get name => throw _privateConstructorUsedError;
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
-  String get timezone => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
-  String get country => throw _privateConstructorUsedError;
-  @JsonKey(defaultValue: '')
-  String get admin1 => throw _privateConstructorUsedError;
+  String? get timezone => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
+  String? get admin1 => throw _privateConstructorUsedError;
 
   /// Create a copy of LocationInternal
   /// with the given fields replaced by the non-null parameter values.
@@ -48,9 +46,9 @@ abstract class $LocationInternalCopyWith<$Res> {
       String name,
       double latitude,
       double longitude,
-      String timezone,
-      @JsonKey(defaultValue: '') String country,
-      @JsonKey(defaultValue: '') String admin1});
+      String? timezone,
+      String? country,
+      String? admin1});
 }
 
 /// @nodoc
@@ -72,9 +70,9 @@ class _$LocationInternalCopyWithImpl<$Res, $Val extends LocationInternal>
     Object? name = null,
     Object? latitude = null,
     Object? longitude = null,
-    Object? timezone = null,
-    Object? country = null,
-    Object? admin1 = null,
+    Object? timezone = freezed,
+    Object? country = freezed,
+    Object? admin1 = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -93,18 +91,18 @@ class _$LocationInternalCopyWithImpl<$Res, $Val extends LocationInternal>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
-      timezone: null == timezone
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as String,
-      country: null == country
+              as String?,
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      admin1: null == admin1
+              as String?,
+      admin1: freezed == admin1
           ? _value.admin1
           : admin1 // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -122,9 +120,9 @@ abstract class _$$LocationInternalImplCopyWith<$Res>
       String name,
       double latitude,
       double longitude,
-      String timezone,
-      @JsonKey(defaultValue: '') String country,
-      @JsonKey(defaultValue: '') String admin1});
+      String? timezone,
+      String? country,
+      String? admin1});
 }
 
 /// @nodoc
@@ -144,9 +142,9 @@ class __$$LocationInternalImplCopyWithImpl<$Res>
     Object? name = null,
     Object? latitude = null,
     Object? longitude = null,
-    Object? timezone = null,
-    Object? country = null,
-    Object? admin1 = null,
+    Object? timezone = freezed,
+    Object? country = freezed,
+    Object? admin1 = freezed,
   }) {
     return _then(_$LocationInternalImpl(
       id: null == id
@@ -165,18 +163,18 @@ class __$$LocationInternalImplCopyWithImpl<$Res>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
-      timezone: null == timezone
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as String,
-      country: null == country
+              as String?,
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      admin1: null == admin1
+              as String?,
+      admin1: freezed == admin1
           ? _value.admin1
           : admin1 // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -189,9 +187,9 @@ class _$LocationInternalImpl implements _LocationInternal {
       required this.name,
       required this.latitude,
       required this.longitude,
-      required this.timezone,
-      @JsonKey(defaultValue: '') required this.country,
-      @JsonKey(defaultValue: '') required this.admin1});
+      this.timezone,
+      this.country,
+      this.admin1});
 
   factory _$LocationInternalImpl.fromJson(Map<String, dynamic> json) =>
       _$$LocationInternalImplFromJson(json);
@@ -205,13 +203,11 @@ class _$LocationInternalImpl implements _LocationInternal {
   @override
   final double longitude;
   @override
-  final String timezone;
+  final String? timezone;
   @override
-  @JsonKey(defaultValue: '')
-  final String country;
+  final String? country;
   @override
-  @JsonKey(defaultValue: '')
-  final String admin1;
+  final String? admin1;
 
   @override
   String toString() {
@@ -252,14 +248,13 @@ class _$LocationInternalImpl implements _LocationInternal {
 
 abstract class _LocationInternal implements LocationInternal {
   const factory _LocationInternal(
-          {required final int id,
-          required final String name,
-          required final double latitude,
-          required final double longitude,
-          required final String timezone,
-          @JsonKey(defaultValue: '') required final String country,
-          @JsonKey(defaultValue: '') required final String admin1}) =
-      _$LocationInternalImpl;
+      {required final int id,
+      required final String name,
+      required final double latitude,
+      required final double longitude,
+      final String? timezone,
+      final String? country,
+      final String? admin1}) = _$LocationInternalImpl;
 
   factory _LocationInternal.fromJson(Map<String, dynamic> json) =
       _$LocationInternalImpl.fromJson;
@@ -273,13 +268,11 @@ abstract class _LocationInternal implements LocationInternal {
   @override
   double get longitude;
   @override
-  String get timezone;
+  String? get timezone;
   @override
-  @JsonKey(defaultValue: '')
-  String get country;
+  String? get country;
   @override
-  @JsonKey(defaultValue: '')
-  String get admin1;
+  String? get admin1;
 
   /// Create a copy of LocationInternal
   /// with the given fields replaced by the non-null parameter values.
