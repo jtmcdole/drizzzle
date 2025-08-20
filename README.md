@@ -6,11 +6,12 @@
 
 ## Preview
 
-<div style="display: flex; gap: 20px;">
+<div style="display: flex; gap: 5px;">
     <img src="./assets/image/screen_shot_01.jpg" height="400"/>
     <img src="./assets/image/screen_shot_02.jpg" height="400"/>
     <img src="./assets/image/screen_shot_03.jpg" height="400"/>
     <img src="./assets/image/screen_shot_04.jpg" height="400"/>
+    <img src="./assets/image/screen_shot_05.jpg" height="400"/>
 </div>
 
 ## Installation
