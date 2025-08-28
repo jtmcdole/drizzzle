@@ -1,6 +1,9 @@
+import 'package:drizzzle/ui/home/view_models/unit_view_model.dart';
 import 'package:drizzzle/ui/search/shared_widgets/custom_card.dart';
+import 'package:drizzzle/utils/converter_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class CurrentView extends StatefulWidget {
   const CurrentView({
@@ -54,18 +57,25 @@ class _CurrentViewState extends State<CurrentView> {
   Column _currentLeft() {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
+    final UnitViewModel unitViewModel = Provider.of<UnitViewModel>(context);
+    final isC = unitViewModel.isC ? 'C' : 'F';
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          widget.locationName,
-          style: textTheme.displaySmall!.copyWith(color: colorScheme.primary),
-          textAlign: TextAlign.start,
-          softWrap: true,
+        ConstrainedBox(
+          constraints:
+              BoxConstraints(maxWidth: MediaQuery.of(context).size.width - 192),
+          child: Text(
+            widget.locationName,
+            style: textTheme.displaySmall!.copyWith(color: colorScheme.primary),
+            textAlign: TextAlign.start,
+            softWrap: true,
+            //overflow: TextOverflow.ellipsis,
+          ),
         ),
         Text(
-          '${widget.currentTemperature}\u00b0',
+          '${isC == 'F' ? celsiusToFahrenheit(widget.currentTemperature) : widget.currentTemperature}\u00b0$isC',
           style: textTheme.displayLarge!.copyWith(
               color: colorScheme.primary, fontWeight: FontWeight.bold),
           textAlign: TextAlign.start,
@@ -80,7 +90,7 @@ class _CurrentViewState extends State<CurrentView> {
           softWrap: true,
         ),
         Text(
-          '${widget.dailyTemperatureMax}\u00b0 / ${widget.dailyTemperatureMin}\u00b0 Feels like ${widget.currentApparentTemperature}\u00b0',
+          '${isC == 'F' ? celsiusToFahrenheit(widget.dailyTemperatureMax) : widget.dailyTemperatureMax}\u00b0 / ${isC == 'F' ? celsiusToFahrenheit(widget.dailyTemperatureMin) : widget.dailyTemperatureMin}\u00b0 Feels like ${isC == 'F' ? celsiusToFahrenheit(widget.currentApparentTemperature) : widget.currentApparentTemperature}\u00b0$isC',
           style: textTheme.bodyLarge!
               .copyWith(color: colorScheme.onSurfaceVariant),
           textAlign: TextAlign.start,

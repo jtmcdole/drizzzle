@@ -17,9 +17,10 @@ class CloudCoverView extends StatelessWidget {
       children: [
         Text(
           '$currentCloudCover%',
-          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-              color: Theme.of(context).colorScheme.secondaryFixedDim,
-              fontWeight: FontWeight.bold),
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall!
+              .copyWith(color: Theme.of(context).colorScheme.secondaryFixedDim),
         )
       ],
     );

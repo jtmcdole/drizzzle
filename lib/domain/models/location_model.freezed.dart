@@ -19,7 +19,7 @@ mixin _$LocationModel {
   String get name => throw _privateConstructorUsedError;
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
-  String get timezone => throw _privateConstructorUsedError;
+  String? get timezone => throw _privateConstructorUsedError;
   String? get admin1 => throw _privateConstructorUsedError;
   String? get country => throw _privateConstructorUsedError;
 
@@ -40,7 +40,7 @@ abstract class $LocationModelCopyWith<$Res> {
       {String name,
       double latitude,
       double longitude,
-      String timezone,
+      String? timezone,
       String? admin1,
       String? country});
 }
@@ -63,7 +63,7 @@ class _$LocationModelCopyWithImpl<$Res, $Val extends LocationModel>
     Object? name = null,
     Object? latitude = null,
     Object? longitude = null,
-    Object? timezone = null,
+    Object? timezone = freezed,
     Object? admin1 = freezed,
     Object? country = freezed,
   }) {
@@ -80,10 +80,10 @@ class _$LocationModelCopyWithImpl<$Res, $Val extends LocationModel>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
-      timezone: null == timezone
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       admin1: freezed == admin1
           ? _value.admin1
           : admin1 // ignore: cast_nullable_to_non_nullable
@@ -108,7 +108,7 @@ abstract class _$$LocationModelImplCopyWith<$Res>
       {String name,
       double latitude,
       double longitude,
-      String timezone,
+      String? timezone,
       String? admin1,
       String? country});
 }
@@ -129,7 +129,7 @@ class __$$LocationModelImplCopyWithImpl<$Res>
     Object? name = null,
     Object? latitude = null,
     Object? longitude = null,
-    Object? timezone = null,
+    Object? timezone = freezed,
     Object? admin1 = freezed,
     Object? country = freezed,
   }) {
@@ -146,10 +146,10 @@ class __$$LocationModelImplCopyWithImpl<$Res>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
-      timezone: null == timezone
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       admin1: freezed == admin1
           ? _value.admin1
           : admin1 // ignore: cast_nullable_to_non_nullable
@@ -180,7 +180,7 @@ class _$LocationModelImpl implements _LocationModel {
   @override
   final double longitude;
   @override
-  final String timezone;
+  final String? timezone;
   @override
   final String? admin1;
   @override
@@ -225,7 +225,7 @@ abstract class _LocationModel implements LocationModel {
       {required final String name,
       required final double latitude,
       required final double longitude,
-      required final String timezone,
+      required final String? timezone,
       required final String? admin1,
       required final String? country}) = _$LocationModelImpl;
 
@@ -236,7 +236,7 @@ abstract class _LocationModel implements LocationModel {
   @override
   double get longitude;
   @override
-  String get timezone;
+  String? get timezone;
   @override
   String? get admin1;
   @override

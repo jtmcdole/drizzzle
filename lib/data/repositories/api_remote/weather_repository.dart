@@ -1,3 +1,4 @@
+
 import 'package:diacritic/diacritic.dart';
 import 'package:drizzzle/data/services/api_remote/api_client.dart';
 import 'package:drizzzle/data/services/api_remote/model/air_quality/air_quality.dart';
@@ -21,19 +22,18 @@ class WeatherRepository {
   final ApiClient _apiClient;
   final DbClient _dbClient;
 
-  Future<Result<Weather>> fetchAndSaveWeather(LocationModel locationModel) async {
+  Future<Result<Weather>> fetchAndSaveWeather(
+      LocationModel locationModel) async {
     final currentResult = await _apiClient.getCurrentData(
-        locationModel.latitude, locationModel.longitude,
-        timezone: locationModel.timezone);
-    final hourlyResult = await _apiClient.getHourlyData(
-        locationModel.latitude, locationModel.longitude,
-        timezone: locationModel.timezone);
-    final dailyResult = await _apiClient.getDailyData(
-        locationModel.latitude, locationModel.longitude,
-        timezone: locationModel.timezone);
-    final aqResult = await _apiClient.getAirQualityData(
-        locationModel.latitude, locationModel.longitude,
-        timezone: locationModel.timezone);
+        locationModel.latitude,
+        locationModel.longitude,
+        locationModel.timezone);
+    final hourlyResult = await _apiClient.getHourlyData(locationModel.latitude,
+        locationModel.longitude, locationModel.timezone);
+    final dailyResult = await _apiClient.getDailyData(locationModel.latitude,
+        locationModel.longitude, locationModel.timezone);
+    final aqResult = await _apiClient.getAirQualityData(locationModel.latitude,
+        locationModel.longitude, locationModel.timezone);
     if (currentResult is Error<Current> ||
         hourlyResult is Error<Hourly> ||
         dailyResult is Error<Daily> ||
@@ -43,6 +43,7 @@ class WeatherRepository {
       final List<HourlyModel> hourlyModelList = [];
       final hourly = (hourlyResult as Ok<Hourly>).value.hourly;
       int size = hourly.time.length;
+
       for (int i = 0; i < size; i += 1) {
         final hourlyModel = HourlyModel(
           hourlyTime: hourly.time.elementAt(i),
@@ -53,8 +54,10 @@ class WeatherRepository {
           hourlyApparentTemperature:
               hourly.apparentTemperature.elementAt(i).round().toString(),
           hourlyWeatherIconPath: weatherCodeToPath(
-              hourly.weatherCode.elementAt(i),
-              hourly.isDay.elementAt(i) == 1 ? true : false),
+            hourly.weatherCode.elementAt(i),
+            hourly.isDay.elementAt(i) == 1 ? true : false,
+            //hourly.isDay.elementAt(i) == 1 ? true : false
+          ),
           hourlyPrecipitationProbablity:
               hourly.precipitationProbability.elementAt(i).toString(),
           hourlyWindSpeed: hourly.windSpeed_10m.elementAt(i).toString(),
@@ -93,7 +96,9 @@ class WeatherRepository {
         currentApparentTemperature:
             current.apparentTemperature.round().toString(),
         currentWeatherIconPath: weatherCodeToPath(
-            current.weatherCode, current.isDay == 1 ? true : false),
+          current.weatherCode,
+          current.isDay == 1 ? true : false,
+        ),
         currentPrecipitation: current.precipitation.toString(),
         currentWeatherIconDescription:
             weatherCodeToDescription(current.weatherCode),
@@ -114,13 +119,13 @@ class WeatherRepository {
         aqPm2_5: airQuality.pm2_5.toString(),
         aqPm10: airQuality.pm10.toString(),
       );
+
       await _dbClient.insert(weather);
-      final data = await _dbClient.getWeather();
-      return data;
+      return getLocalWeather();
     }
   }
 
-  Future<Result<Weather>> getWeather() async{
+  Future<Result<Weather>> getLocalWeather() async {
     final weather = await _dbClient.getWeather();
     return weather;
   }

@@ -7,7 +7,7 @@ class LocationModel with _$LocationModel {
     required String name,
     required double latitude,
     required double longitude,
-    required String timezone,
+    required String? timezone,
     required String? admin1,
     required String? country,
   }) = _LocationModel;

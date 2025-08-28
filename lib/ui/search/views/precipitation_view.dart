@@ -10,16 +10,14 @@ class PrecipitationView extends StatelessWidget {
   Widget build(BuildContext context) {
     const String title = 'Precipitation';
     const IconData iconData = Symbols.beach_access_sharp;
-    final textTheme = Theme.of(context).textTheme;
     final child = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
           '$currentPrecipitation mm',
-          style: textTheme.headlineSmall!.copyWith(
-              color: Theme.of(context).colorScheme.secondaryFixedDim,
-              fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              color: Theme.of(context).colorScheme.secondaryFixedDim),
         ),
       ],
     );

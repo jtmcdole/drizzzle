@@ -10,9 +10,9 @@ class LocationInternal with _$LocationInternal {
     required String name,
     required double latitude,
     required double longitude,
-    required String timezone,
-    @JsonKey(defaultValue: '') required String country,
-    @JsonKey(defaultValue: '') required String admin1,
+    String? timezone,
+    String? country,
+    String? admin1,
   }) = _LocationInternal;
 
   factory LocationInternal.fromJson(Map<String, Object?> json) =>

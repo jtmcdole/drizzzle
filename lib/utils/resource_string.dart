@@ -42,58 +42,58 @@ class ResourceString {
 }
 
 class CurrentTable {
-  static String tableName = 'current';
-  static String columnLocationName = 'location_name';
-  static String columnCurrentTemperature = 'current_temperature';
-  static String columnCurrentRelativeHumidity = 'current_relative_humidity';
-  static String columnCurrentPrecipitation = 'current_precipitation';
-  static String columnCurrentApparentTemperature =
+  static const tableName = 'current';
+  static const columnLocationName = 'location_name';
+  static const columnCurrentTemperature = 'current_temperature';
+  static const columnCurrentRelativeHumidity = 'current_relative_humidity';
+  static const columnCurrentPrecipitation = 'current_precipitation';
+  static const columnCurrentApparentTemperature =
       'current_apparent_temperature';
-  static String columnCurrentWeatherIconPath = 'current_weather_icon_path';
-  static String columnCurrentWeatherIconDescription =
+  static const columnCurrentWeatherIconPath = 'current_weather_icon_path';
+  static const columnCurrentWeatherIconDescription =
       'current_weather_icon_description';
-  static String columnCurrentCloudCover = 'current_cloud_cover';
-  static String columnCurrentAtmospherePressure = 'current_atmosphere_pressure';
-  static String columnCurrentSurfacePressure = 'current_surface_pressure';
-  static String columnCurrentWindSpeed = 'current_wind_speed';
-  static String columnCurrentWindDirection = 'current_wind_direction';
-  static String columnAqUsAqi = 'aq_us_aqi';
-  static String columnAqUvIndex = 'aq_uv_index';
-  static String columnAqdust = 'aq_dust';
-  static String columnAqOzone = 'aq_ozone';
-  static String columnAqSulphure = 'aq_sulphure';
-  static String columnAqNitrogen = 'aq_nitrogen';
-  static String columnAqCarbon = 'aq_carbon';
-  static String columnAqPm2_5 = 'aq_pm2_5';
-  static String columnAqPm10 = 'aq_pm10';
+  static const columnCurrentCloudCover = 'current_cloud_cover';
+  static const columnCurrentAtmospherePressure = 'current_atmosphere_pressure';
+  static const columnCurrentSurfacePressure = 'current_surface_pressure';
+  static const columnCurrentWindSpeed = 'current_wind_speed';
+  static const columnCurrentWindDirection = 'current_wind_direction';
+  static const columnAqUsAqi = 'aq_us_aqi';
+  static const columnAqUvIndex = 'aq_uv_index';
+  static const columnAqdust = 'aq_dust';
+  static const columnAqOzone = 'aq_ozone';
+  static const columnAqSulphure = 'aq_sulphure';
+  static const columnAqNitrogen = 'aq_nitrogen';
+  static const columnAqCarbon = 'aq_carbon';
+  static const columnAqPm2_5 = 'aq_pm2_5';
+  static const columnAqPm10 = 'aq_pm10';
 }
 
 class DailyTable {
-  static String tableName = 'daily';
-  static String columnDailyTime = 'daily_time';
-  static String columnDailyWeatherIconPath = 'daily_weather_icon_path';
-  static String columnDailyTemperatureMax = 'daily_temperature_max';
-  static String columnDailyTemperatureMin = 'daily_temperature_min';
-  static String columnDailySunrise = 'daily_sunrise';
-  static String columnDailySunset = 'daily_sunset';
-  static String columnDailyPrecipitationProbablity =
+  static const tableName = 'daily';
+  static const columnDailyTime = 'daily_time';
+  static const columnDailyWeatherIconPath = 'daily_weather_icon_path';
+  static const columnDailyTemperatureMax = 'daily_temperature_max';
+  static const columnDailyTemperatureMin = 'daily_temperature_min';
+  static const columnDailySunrise = 'daily_sunrise';
+  static const columnDailySunset = 'daily_sunset';
+  static const columnDailyPrecipitationProbablity =
       'daily_precipitationProbablity';
 }
 
 class HourlyTable {
-  static String tableName = 'hourly';
-  static String columnHourlyTime = 'hourly_time';
-  static String columnHourlyTemperature = 'hourly_temperature';
-  static String columnHourlyRelativeHumidity = 'hourly_relative_humidity';
-  static String columnHourlyApparentTemperature = 'hourly_apparent_temperature';
-  static String columnHourlyWeatherIconPath = 'hourly_weather_icon_path';
-  static String columnHourlyPrecipitationProbablity =
+  static const tableName = 'hourly';
+  static const columnHourlyTime = 'hourly_time';
+  static const columnHourlyTemperature = 'hourly_temperature';
+  static const columnHourlyRelativeHumidity = 'hourly_relative_humidity';
+  static const columnHourlyApparentTemperature = 'hourly_apparent_temperature';
+  static const columnHourlyWeatherIconPath = 'hourly_weather_icon_path';
+  static const columnHourlyPrecipitationProbablity =
       'hourly_precipitation_probablity';
-  static String columnHourlyWindSpeed = 'hourly_wind_speed';
-  static String columnHourlyWindDirection = 'hourly_wind_direction';
+  static const columnHourlyWindSpeed = 'hourly_wind_speed';
+  static const columnHourlyWindDirection = 'hourly_wind_direction';
 }
 
-final String createCurrentTableExecution = '''
+const String createCurrentTableExecution = '''
 create table ${CurrentTable.tableName}(
   id integer primary key,
   ${CurrentTable.columnLocationName} text not null,
@@ -119,7 +119,7 @@ create table ${CurrentTable.tableName}(
   ${CurrentTable.columnAqPm10} text not null
 )''';
 
-final String createDailyTableExecution = '''
+const String createDailyTableExecution = '''
 create table ${DailyTable.tableName}(
     id integer primary key,
     ${DailyTable.columnDailyTime} text not null,
@@ -131,7 +131,7 @@ create table ${DailyTable.tableName}(
     ${DailyTable.columnDailyPrecipitationProbablity} text not null
 )''';
 
-final String createHourlyTableExecution = '''
+const String createHourlyTableExecution = '''
 create table ${HourlyTable.tableName}(
     id integer primary key,
     ${HourlyTable.columnHourlyTime} text not null,
@@ -145,6 +145,20 @@ create table ${HourlyTable.tableName}(
 )''';
 
 class SharedPreferencesKeys {
-  static String colorKey = "color";
-  static String brightnessKey = "brightness";
+  static const colorKey = "color";
+  static const brightnessKey = "brightness";
+  static const temperatureUnitKey = "temperature";
+  static const windSpeedUnitKey = "wind_speed";
+}
+
+class AndroidWidgetNames {
+  static const currentWeatherWidget = "CurrentWeatherWidget";
+}
+
+class AndroidWidgetKeys {
+  static const temperatureKey = "current_temperature_text";
+  static const cityNameKey = "current_city_text";
+  static const weatherConditionKey = "current_weather_text";
+  static const weatherIconIdKey = "current_weather_icon_id";
+  static const precipitationProbabilityKey = "precipitation_key";
 }

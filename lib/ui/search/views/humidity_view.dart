@@ -11,9 +11,8 @@ class HumidityView extends StatelessWidget {
     const IconData iconData = Symbols.humidity_percentage_sharp;
     final Widget child = Text(
       '$currentRelativeHumidity%',
-      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-              color: Theme.of(context).colorScheme.secondaryFixedDim,
-              fontWeight: FontWeight.bold),
+      style:Theme.of(context).textTheme.headlineSmall!.copyWith(
+              color: Theme.of(context).colorScheme.secondaryFixedDim),
     );
     return SharedSmallWidget(
       title: title,

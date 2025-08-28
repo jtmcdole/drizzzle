@@ -8,16 +8,14 @@ class PressureView extends StatelessWidget {
   Widget build(BuildContext context) {
     const String title = 'Surface pressure';
     const IconData iconData = Icons.compress_sharp;
-    final textTheme = Theme.of(context).textTheme;
     final child = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
           '$currentSurfacePressure mb',
-          style: textTheme.headlineSmall!.copyWith(
-              color: Theme.of(context).colorScheme.secondaryFixedDim,
-              fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              color: Theme.of(context).colorScheme.secondaryFixedDim),
         ),
       ],
     );

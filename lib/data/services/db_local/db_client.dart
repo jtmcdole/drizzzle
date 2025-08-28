@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:drizzzle/domain/models/daily_model.dart';
 import 'package:drizzzle/domain/models/hourly_model.dart';
 import 'package:drizzzle/domain/models/weather.dart';
+import 'package:drizzzle/utils/converter_functions.dart';
 import 'package:drizzzle/utils/resource_string.dart';
 import 'package:drizzzle/utils/result.dart';
+import 'package:drizzzle/utils/widget_update_function.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DbClient {
@@ -192,6 +197,20 @@ class DbClient {
       aqPm2_5: currentMap[CurrentTable.columnAqPm2_5] as String,
       aqPm10: currentMap[CurrentTable.columnAqPm10] as String,
     );
+    if (Platform.isAndroid) {
+      final pref = await SharedPreferences.getInstance();
+      bool? isC = pref.getBool(SharedPreferencesKeys.temperatureUnitKey);
+
+      await updateCurrentWidget(
+          precipitationProbability:
+              '${weather.dailyModelList[1].dailyPrecipitationProbablity}%',
+          cityName: weather.locationName,
+          weatherCondition: weather.currentWeatherIconDescription,
+          weatherIconPath: weather.currentWeatherIconPath,
+          currentTemperature: (isC == null || isC == true)
+              ? '${weather.currentTemperature}\u00b0C'
+              : '${celsiusToFahrenheit(weather.currentTemperature)}\u00b0F');
+    }
 
     return Result.ok(weather);
   }

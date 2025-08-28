@@ -36,9 +36,9 @@ class ApiClient {
   // get current weather data
   Future<Result<Current>> getCurrentData(
     double latitude,
-    double longitude, {
-    String timezone = 'GMT',
-  }) async {
+    double longitude,
+    String? timezone,
+  ) async {
     final Uri httpUri = Uri(
         scheme: ResourceString.scheme,
         host: ResourceString.weatherHost,
@@ -47,7 +47,7 @@ class ApiClient {
           ResourceString.latitudeQuery: latitude.toString(),
           ResourceString.longitudeQuery: longitude.toString(),
           ResourceString.currentQuery: ResourceString.currentQueryValue,
-          ResourceString.timezoneQuery: timezone,
+          if (timezone != null) ResourceString.timezoneQuery: timezone,
           ResourceString.forecastQuery: ResourceString.forecastDaysQueryValue,
         });
     return _handleRequest<Current>(
@@ -59,9 +59,9 @@ class ApiClient {
   // get hourly weather data
   Future<Result<Hourly>> getHourlyData(
     double latitude,
-    double longitude, {
-    String timezone = 'GMT',
-  }) async {
+    double longitude,
+    String? timezone,
+  ) async {
     final Uri httpUri = Uri(
         scheme: ResourceString.scheme,
         host: ResourceString.weatherHost,
@@ -70,7 +70,7 @@ class ApiClient {
           ResourceString.latitudeQuery: latitude.toString(),
           ResourceString.longitudeQuery: longitude.toString(),
           ResourceString.hourlyQuery: ResourceString.hourlyQueryValue,
-          ResourceString.timezoneQuery: timezone,
+          if (timezone != null) ResourceString.timezoneQuery: timezone,
           ResourceString.forecastQuery: ResourceString.forecastDaysQueryValue,
         });
     return _handleRequest<Hourly>(
@@ -82,9 +82,9 @@ class ApiClient {
   // get daily weather data
   Future<Result<Daily>> getDailyData(
     double latitude,
-    double longitude, {
-    String timezone = 'GMT',
-  }) async {
+    double longitude,
+    String? timezone,
+  ) async {
     final Uri httpUri = Uri(
         scheme: ResourceString.scheme,
         host: ResourceString.weatherHost,
@@ -93,7 +93,7 @@ class ApiClient {
           ResourceString.latitudeQuery: latitude.toString(),
           ResourceString.longitudeQuery: longitude.toString(),
           ResourceString.dailyQuery: ResourceString.dailyQueryValue,
-          ResourceString.timezoneQuery: timezone,
+          if (timezone != null) ResourceString.timezoneQuery: timezone,
           ResourceString.pastdaysQuery: '1',
           ResourceString.forecastQuery: '7',
         });
@@ -105,10 +105,7 @@ class ApiClient {
 
   // get air quality data
   Future<Result<AirQuality>> getAirQualityData(
-    double latitude,
-    double longitude, {
-    String timezone = 'GMT',
-  }) async {
+      double latitude, double longitude, String? timezone) async {
     final Uri httpUri = Uri(
         scheme: ResourceString.scheme,
         host: ResourceString.airQualityHost,
@@ -117,7 +114,7 @@ class ApiClient {
           ResourceString.latitudeQuery: latitude.toString(),
           ResourceString.longitudeQuery: longitude.toString(),
           ResourceString.currentQuery: ResourceString.airQualityQueryValue,
-          ResourceString.timezoneQuery: timezone,
+          if (timezone != null) ResourceString.timezoneQuery: timezone,
           ResourceString.forecastQuery: ResourceString.forecastDaysQueryValue,
           'domains': 'cams_global',
         });

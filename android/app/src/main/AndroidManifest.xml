@@ -4,6 +4,17 @@
         android:label="Drizzzle"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+        <receiver
+            android:name=".CurrentWeatherWidget"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/current_weather_widget_info" />
+        </receiver>
         <activity
             android:name=".MainActivity"
             android:exported="true"
